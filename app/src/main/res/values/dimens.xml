@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="recycle_margin">5dp</dimen>
+
+    <dimen name="content_title_txt_size">20sp</dimen>
+    <dimen name="content_img_width">50dp</dimen>
+    <dimen name="content_img_height">50dp</dimen>
+    <dimen name="content_img_margin">10dp</dimen>
+    <dimen name="content_view_margin">10dp</dimen>
+</resources>
