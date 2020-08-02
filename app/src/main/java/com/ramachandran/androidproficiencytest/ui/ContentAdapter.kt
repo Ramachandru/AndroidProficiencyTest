@@ -8,7 +8,6 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.ramachandran.androidproficiencytest.R
 import com.ramachandran.androidproficiencytest.databinding.ContentadapterBinding
 import com.ramachandran.androidproficiencytest.network.model.Row
@@ -19,7 +18,7 @@ class ContentAdapter(context : Context) : RecyclerView.Adapter<ContentAdapter.Co
     val mContext=context
     private lateinit var contentadapterBinding: ContentadapterBinding
     companion object{
-        const val dummyImage : String ="https://via.placeholder.com/300.png/09f/fff"
+        const val dummyImage : String ="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
        @JvmStatic
         @BindingAdapter("profileImage")
         fun loadImage(view: ImageView, profileImageUrl: String) {

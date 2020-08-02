@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <import type="android.view.View"/>
         <variable
             name="rowInstance"
             type="com.ramachandran.androidproficiencytest.network.model.Row" />
@@ -44,7 +43,7 @@
             android:layout_weight=".5"
             android:layout_margin="@dimen/content_img_margin"
             android:layout_gravity="center"
-            app:profileImage="@{rowInstance.imageHref!=null?rowInstance.imageHref:dummyImg}"/>
+            app:profileImage="@{dummyImg}"/>
 
     </LinearLayout>
 </RelativeLayout>

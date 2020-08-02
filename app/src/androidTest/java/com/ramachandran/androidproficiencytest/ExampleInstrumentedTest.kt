@@ -35,18 +35,5 @@ class ExampleInstrumentedTest {
         assertEquals("com.ramachandran.androidproficiencytest", appContext.packageName)
     }
 
-    @Test
-    fun dataPasser(){
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-       // activity =appContext as Activity
-        val contentAdapter = ContentAdapter(appContext)
-        val recyclclerView = (appContext as MainActivity).findViewById<RecyclerView>(R.id.recycler)
-        val layoutManager = LinearLayoutManager(appContext)
-        var rowsList = mutableListOf<Row>()
-        rowsList.add(Row("test_title","test_description","img_url"))
-        rowsList.add(Row("test_title_1","test_description_1","img_url_1"))
-        contentAdapter.setList(rowsList)
-        recyclclerView.layoutManager = layoutManager
-        recyclclerView.adapter = contentAdapter
-    }
+
 }
