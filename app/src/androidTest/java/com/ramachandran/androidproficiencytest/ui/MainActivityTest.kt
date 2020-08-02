@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -19,29 +20,42 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
-@RunWith(JUnit4::class)
+@RunWith(AndroidJUnit4::class)
 class MainActivityTest {
 
     @get:Rule
     public val activityRule :ActivityTestRule<MainActivity> = ActivityTestRule<MainActivity>(MainActivity::class.java)
     private var activity : Activity ? =null
+    var contentAdapter : ContentAdapter? =null
+    var layoutManager : LinearLayoutManager? =null
+    var recyclclerView : RecyclerView ? =null
     @Before
     fun setUp() {
         activity = activityRule.activity
-    }
-    @Test
-    fun dataPasser(){
         val context : Context = activity as Context
-        val contentAdapter = ContentAdapter(context)
-        val recyclclerView = (activity)!!.findViewById<RecyclerView>(R.id.recycler)
-        val layoutManager = LinearLayoutManager(context)
+        contentAdapter = ContentAdapter(context)
+        recyclclerView = (activity)!!.findViewById<RecyclerView>(R.id.recycler)
+        layoutManager = LinearLayoutManager(context)
         var rowsList = mutableListOf<Row>()
         rowsList.add(Row("test_title","test_description","img_url"))
         rowsList.add(Row("test_title_1","test_description_1","img_url_1"))
-        contentAdapter.setList(rowsList)
+        contentAdapter?.setList(rowsList)
+
+    }
+    @Test
+    fun swipeRefresh(){
+        val swipeRefreshLayout = activity!!.findViewById<SwipeRefreshLayout>(R.id.swiperefresh)
+        swipeRefreshLayout.setOnRefreshListener {
+            activity?.runOnUiThread {
+                contentAdapter!!.notifyDataSetChanged()
+            }
+        }
+    }
+    @Test
+    fun dataPasser(){
         activity?.runOnUiThread {
-            recyclclerView.layoutManager = layoutManager
-            recyclclerView.adapter = contentAdapter
+            recyclclerView?.layoutManager = layoutManager
+            recyclclerView?.adapter = contentAdapter
         }
 
     }
